@@ -364,6 +364,62 @@ body {
   object-fit: cover;
   border-radius: 10px;
 }
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+
+/* Make cards stack nicely on phones */
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #featured-list, #restaurant-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    background-color: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    display: none;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav li {
+    margin: 10px 0;
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+/* Default hide hamburger on large screens */
+.menu-icon {
+  display: none;
+}
+
+/* Images scale properly */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Container padding fix */
+.container {
+  padding: 0 15px;
+}
+
 
 
 
@@ -375,6 +431,7 @@ body {
   <nav id="navbar">
     <div class="container topbar">
       <h1 class="logo"><a href="resturant.html">🍽️Food Resturant Kenya</a></h1>
+       <div class="menu-icon">☰</div>
       <ul id="nav-links">
         <li><a href="#" id="nav-home">Home</a></li>
         <li><a href="#" id="nav-restaurants">Restaurants</a></li>
@@ -412,7 +469,7 @@ body {
           <button class="btn" id="btn-feature-order">Order Now</button>
           <button class="btn secondary" id="btn-view-rest">Browse Restaurants</button>
         </p>
-        <img src="img/pilau.webp" alt="food banner" style="width: 100%; max-width: 1500px; height: 200px; border-radius: 30px; display:stretch;">
+        <img src="img/pexels-asphotography-96620.jpg" alt="food banner" style="width: 100%; max-width: 1500px; height: 200px; border-radius: 30px; display:stretch;">
         <div>Featured</div>
         <div class="grid" style="margin-top:10px" id="featured-list">
           <!-- JS populates -->
@@ -536,7 +593,7 @@ body {
             </div>
 
             <div style="margin-top:8px" class="notice small">
-              This is a prototype. Real payment and delivery integration is not implemented.
+              This is a prototype. Real payment and delivery integration I haven't implemented.
             </div>
 
             <div style="margin-top:12px">
@@ -586,7 +643,7 @@ body {
    ------------------------ */
 const restaurants = [
   {
-    id: 'r1', name:'Mama’s Kitchen', cuisine:'Local Dishes', rating:4.6,
+    id: 'r1', name:'Emmanuel’s Kitchen', cuisine:'Local Dishes', rating:4.6,
     eta:'30-40 mins', image:'img/pilau.webp', menu:[
       {id:'m1', name:'Ugali & Beef Stew', desc:'Served with sukuma wiki', price:350},
       {id:'m2', name:'Chicken Pilau', desc:'Spiced rice with pieces of chicken', price:400},
@@ -880,8 +937,25 @@ document.getElementById('nav-contact').onclick = e => {
   e.preventDefault();
   showPage('contact');
 };
+const menuIcon = document.querySelector('.menu-icon');
+const navLinks = document.querySelector('nav ul');
+
+menuIcon.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
 
 </script>
 
 </body>
 </html>
+
+   
+
+    
+ 
+    
+    
+ 
+    
+  
