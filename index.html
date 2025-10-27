@@ -364,62 +364,80 @@ body {
   object-fit: cover;
   border-radius: 10px;
 }
-/* ===== MOBILE RESPONSIVE FIXES ===== */
-
-/* Make cards stack nicely on phones */
-@media (max-width: 768px) {
-  .card {
-    width: 100%;
-    margin-bottom: 20px;
+/* --- MOBILE RESPONSIVE FIX --- */
+@media (max-width: 900px) {
+  /* Navbar adjustments */
+  .menu-icon {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
   }
 
-  #featured-list, #restaurant-list {
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #333;
+  }
+
+  #nav-links.show {
     display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
-  nav ul {
-    flex-direction: column;
-    background-color: #fff;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
+  #nav-links li a {
+    border-top: 1px solid #444;
+    padding: 15px;
+  }
+
+  .nav-extra {
     display: none;
   }
 
-  nav ul.show {
-    display: flex;
+  /* Adjust hero image and text */
+  .hero {
+    flex-direction: column;
+    text-align: center;
   }
 
-  nav li {
-    margin: 10px 0;
+  .hero img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
   }
 
-  .menu-icon {
-    display: block;
-    cursor: pointer;
+  /* Make grid items stack nicely */
+  #featured-list,
+  #restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 15px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    margin: 0 auto;
+  }
+
+  /* Sidebar to stack below content */
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .cart-box {
+    position: static;
+  }
+
+  /* Footer */
+  footer .container {
+    flex-direction: column;
+    text-align: center;
   }
 }
-
-/* Default hide hamburger on large screens */
-.menu-icon {
-  display: none;
-}
-
-/* Images scale properly */
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-/* Container padding fix */
-.container {
-  padding: 0 15px;
-}
-
 
 
 
@@ -430,7 +448,7 @@ img {
 <header>
   <nav id="navbar">
     <div class="container topbar">
-      <h1 class="logo"><a href="resturant.html">🍽️Food Resturant Kenya</a></h1>
+      <h1 class="logo"><a href="index.html">🍽️Food Resturant Kenya</a></h1>
        <div class="menu-icon">☰</div>
       <ul id="nav-links">
         <li><a href="#" id="nav-home">Home</a></li>
@@ -938,17 +956,20 @@ document.getElementById('nav-contact').onclick = e => {
   showPage('contact');
 };
 const menuIcon = document.querySelector('.menu-icon');
-const navLinks = document.querySelector('nav ul');
+const navLinks = document.getElementById('nav-links');
 
 menuIcon.addEventListener('click', () => {
   navLinks.classList.toggle('show');
+  menuIcon.textContent = navLinks.classList.contains('show') ? '✖' : '☰';
 });
+
 
 
 </script>
 
 </body>
 </html>
+
 
    
 
@@ -959,3 +980,4 @@ menuIcon.addEventListener('click', () => {
  
     
   
+
