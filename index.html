@@ -69,16 +69,17 @@ p {
         background:linear-gradient(90deg,var(--card), #fefefe);
         border-bottom:1px solid #e6e6e6
     }
+    
     .container{
         max-width:var(--maxw);
         margin:0 auto;
-        padding:18px
+        padding:18px;
     }
     .topbar{
         display:flex;
         align-items:center;
         justify-content:space-between;
-        gap:12px
+        gap:12px;
     }
     .logo{
         display:flex;
@@ -122,30 +123,34 @@ p {
     .btn.secondary{
         background:var(--accent-2)
     }
-    .hero{
-        display:flex;
-        gap:20px;
-        margin-top:20px;
-        align-items:center
-    }
-    .hero .banner{
-        flex:1;
-        padding:22px;
-        border-radius:10px;
-        background:linear-gradient(135deg,#fff,#fff9f6);
-        box-shadow:0 3px 8px rgba(0,0,0,0.04)
-    }
-    .hero img{
-        width:420px;
-        border-radius:12px;
-        object-fit:cover
-    }
-    .grid{
-        display:grid;
-        grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-        gap:14px;
-        margin-top:18px
-    }
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  margin-top: 2rem;
+}
+
+.hero .banner {
+  background: none;
+  box-shadow: none;
+  text-align: center;
+  max-width: 900px;
+}
+
+.hero img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  object-fit: cover;
+}
+body {
+  background-color: #fafafa;
+}
+
+    
     .card{
         background:var(--card);padding:12px;
         border-radius:10px;
@@ -309,13 +314,13 @@ body {
 
 /* Homepage section */
 #home-page {
-  background: #ffffff; /* plain white background */
+  background: transparent;   /* removes white background */
   text-align: center;
-  padding: 4rem 2rem;
-  border-radius: 0;
-  box-shadow: none;
-  margin: 0;
+  padding: 2rem 1rem 3rem;   /* gives breathing room */
+  margin: 0 auto;
+  max-width: 1200px;         /* keeps content centered */
 }
+
 
 #home-page h2 {
   font-size: 2.5rem;
@@ -364,62 +369,59 @@ body {
   object-fit: cover;
   border-radius: 10px;
 }
-/* --- MOBILE RESPONSIVE FIX --- */
-@media (max-width: 900px) {
-  /* Navbar adjustments */
-  .menu-icon {
-    display: block;
-    font-size: 28px;
-    cursor: pointer;
-    color: white;
+/* --- EXTRA MOBILE OPTIMIZATION (Phones < 600px) --- */
+@media (max-width: 600px) {
+  /* Reduce body padding and text sizes */
+  body {
+    padding: 0;
+    font-size: 14px;
   }
 
-  #nav-links {
-    display: none;
+  header .container {
     flex-direction: column;
-    width: 100%;
-    background: #333;
+    align-items: flex-start;
   }
 
-  #nav-links.show {
-    display: flex;
+  /* Make hero section fit perfectly */
+  .hero .banner {
+    padding: 0 10px;
   }
 
-  #nav-links li a {
-    border-top: 1px solid #444;
-    padding: 15px;
+  .hero h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
   }
 
-  .nav-extra {
-    display: none;
-  }
-
-  /* Adjust hero image and text */
-  .hero {
-    flex-direction: column;
-    text-align: center;
+  .hero p {
+    font-size: 0.95rem;
   }
 
   .hero img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
-  /* Make grid items stack nicely */
-  #featured-list,
-  #restaurant-list {
+  /* Cards should stack cleanly */
+  #restaurant-list,
+  #featured-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 15px;
-  }
-
-  .card {
-    flex: 1 1 100%;
+    grid-template-columns: 1fr; /* one per row */
+    gap: 12px;
     margin: 0 auto;
   }
 
-  /* Sidebar to stack below content */
+  .card {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    height: 160px;
+  }
+
+  /* Sidebar should appear below content */
   .main {
     flex-direction: column;
   }
@@ -430,15 +432,29 @@ body {
 
   .cart-box {
     position: static;
+    margin-top: 15px;
   }
 
-  /* Footer */
-  footer .container {
+  /* Buttons and inputs fit smaller width */
+  input[type="search"],
+  input[type="text"],
+  input[type="tel"],
+  textarea {
+    font-size: 14px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* Footer alignment */
+  footer .container > div {
     flex-direction: column;
-    text-align: center;
+    gap: 8px;
   }
 }
-
 
 
   </style>
@@ -487,7 +503,7 @@ body {
           <button class="btn" id="btn-feature-order">Order Now</button>
           <button class="btn secondary" id="btn-view-rest">Browse Restaurants</button>
         </p>
-        <img src="img/pexels-asphotography-96620.jpg" alt="food banner" style="width: 100%; max-width: 1500px; height: 200px; border-radius: 30px; display:stretch;">
+        <img src="img/pexels-asphotography-96620.jpg" alt="food banner" style="width: 50%; max-width: 1500px; height: 200px; border-radius: 30px; display:stretch;">
         <div>Featured</div>
         <div class="grid" style="margin-top:10px" id="featured-list">
           <!-- JS populates -->
@@ -530,7 +546,7 @@ body {
   <!-- RESTAURANT LIST -->
   <section id="restaurants-page" class="hidden">
     <h3>Nearby Restaurants</h3>
-    <p class="muted">Showing restaurants near your location (sample data)</p>
+    <p class="muted">Showing restaurants near your location </p>
     <div class="grid" id="restaurant-list">
       <!-- JS populates -->
     </div>
@@ -971,6 +987,7 @@ menuIcon.addEventListener('click', () => {
 </html>
 
 
+
    
 
     
@@ -980,4 +997,5 @@ menuIcon.addEventListener('click', () => {
  
     
   
+
 
